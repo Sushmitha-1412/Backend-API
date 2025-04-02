@@ -1,9 +1,10 @@
 const CartModel = require("../models/cartmodel");
+const UserModel = require("../models/usermodel");  
+const ProductModel = require("../models/productmodel");  
 
 const create = async (req, res) => {
   try {
     const data = req.body;
-
     const newCart = await CartModel.create(data);
 
     res.status(201).json({
@@ -20,8 +21,10 @@ const create = async (req, res) => {
 
 const view = async (req, res) => {
   try {
+    const viewcart = await CartModel.find({})
+      .populate('user', "name email")   
+      .populate('product', "name price image");  
 
-    const viewcart = await CartModel.find({}).populate('user',"name email").populate('product');
     res.status(200).json({
       message: "Cart viewed successfully",
       data: viewcart

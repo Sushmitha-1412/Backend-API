@@ -2,9 +2,10 @@
 const express = require("express");
 const router = express.Router();
 
-const CartController = require("../Controller/CartController");
+const UserController = require("../Controller/UserController"); 
 
-router.post("/create", CartController.create); 
-router.get("/view", CartController.view); 
+router.post("/create", UserController.create); 
+router.get("/view", UserController.view); 
 
 module.exports = router;
+
